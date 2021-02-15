@@ -90,7 +90,7 @@ class PlacesListController: UIViewController, CLLocationManagerDelegate {
         searchView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         searchView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         
-        if UIDevice().hasTopNotch {
+        if UIDevice().hasSafeArea {
             searchView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: searchViewHeightWithSafeArea).isActive = true
         } else {
             searchView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: searchViewHeight).isActive = true
