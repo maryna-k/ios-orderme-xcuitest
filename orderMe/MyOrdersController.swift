@@ -15,7 +15,7 @@ import FBSDKLoginKit
 class MyOrdersController: UIViewController {
     
     var orders: [Order] = []
-    let ordersViewHeight: CGFloat = 70.0
+    let ordersViewHeight: CGFloat = 20.0
     
     @IBOutlet weak var tableView: UITableView!
 
