@@ -24,7 +24,10 @@ class MyOrdersController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
-        let statusBarHeight = (UIApplication.shared.connectedScenes.first as? UIWindowScene )?.statusBarManager?.statusBarFrame.height ?? 0 // statusBarFrame.height
+        let statusBarHeight = (UIApplication.shared.connectedScenes.first as? UIWindowScene )?
+            .statusBarManager?
+            .statusBarFrame
+            .height ?? 0 // statusBarFrame.height
         self.tableView.contentInset = UIEdgeInsets(top: ordersViewHeight - statusBarHeight, left: 0, bottom: 0, right: 0)
         if SingletonStore.sharedInstance.user != nil {
             self.loadData()
@@ -55,7 +58,7 @@ class MyOrdersController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
-        navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
     navigationController?.navigationBar.layer.insertSublayer(CALayer().setGradient(navigationController: navigationController!), at: 1)
     }
     
