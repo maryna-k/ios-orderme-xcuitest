@@ -5,17 +5,17 @@ use_frameworks!
 
 target "orderMe" do
    inhibit_all_warnings!
-	pod 'Alamofire'
-	pod 'ObjectMapper'
-	pod 'AlamofireImage'
-	pod 'FacebookCore'
-	pod 'FacebookLogin'
-	pod 'FacebookShare'
-	pod 'SwiftLint'
-	pod 'FBSDKCoreKit'
-	pod 'FBSDKLoginKit'
-	pod 'FBSDKShareKit'
-	pod 'FBSDKPlacesKit'
+	pod 'Alamofire', '~> 5.7.1'
+	pod 'ObjectMapper', '~> 4.2.0'
+	pod 'AlamofireImage', '~> 4.2.0'
+	pod 'FacebookCore', '~> 0.9.0'
+	pod 'FacebookLogin', '~> 0.9.0'
+	pod 'FacebookShare', '~> 0.9.0'
+	pod 'SwiftLint', '~> 0.52.4'
+	pod 'FBSDKCoreKit', '~> 5.15.1'
+	pod 'FBSDKLoginKit', '~> 5.15.1'
+	pod 'FBSDKShareKit', '~> 5.15.1'
+	pod 'FBSDKPlacesKit', '~> 5.15.0'
   
   post_install do |installer|
       installer.pods_project.targets.each do |target|
