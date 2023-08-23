@@ -24,7 +24,7 @@ class MyOrdersController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let statusBarHeight = (UIApplication.shared.connectedScenes.first as? UIWindowScene )?.statusBarManager?.statusBarFrame.height ?? 0 // statusBarFrame.height
         self.tableView.contentInset = UIEdgeInsets(top: ordersViewHeight - statusBarHeight, left: 0, bottom: 0, right: 0)
         if SingletonStore.sharedInstance.user != nil {
             self.loadData()
