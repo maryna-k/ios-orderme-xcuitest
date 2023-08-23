@@ -105,18 +105,21 @@ extension CALayer {
         gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
         gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
         if #available(iOS 11.0, *) {
-                    let window = UIApplication.shared.keyWindow
-                    let topPadding = window?.safeAreaInsets.top
-                    
-                    
-                    if UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 20 {
-                        gradient.frame = CGRect(x: 0.0, y: 0 - (topPadding ?? 0), width: (navigationController.navigationBar.frame.size.width), height: 88)
-                    } else {
-                        gradient.frame = CGRect(x: 0.0, y: -20.0, width: (navigationController.navigationBar.frame.size.width), height: (navigationController.navigationBar.frame.size.height) + 20)
-                    }
-                } else {
-                    gradient.frame = CGRect(x: 0.0, y: -20.0, width: (navigationController.navigationBar.frame.size.width), height: (navigationController.navigationBar.frame.size.height) + 20)
-                }
+            let window = UIApplication
+                .shared
+                .windows
+                .last { $0.isKeyWindow }
+            let topPadding = window?.safeAreaInsets.top
+
+
+            if UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 20 {
+                gradient.frame = CGRect(x: 0.0, y: 0 - (topPadding ?? 0), width: (navigationController.navigationBar.frame.size.width), height: 88)
+            } else {
+                gradient.frame = CGRect(x: 0.0, y: -20.0, width: (navigationController.navigationBar.frame.size.width), height: (navigationController.navigationBar.frame.size.height) + 20)
+            }
+        } else {
+            gradient.frame = CGRect(x: 0.0, y: -20.0, width: (navigationController.navigationBar.frame.size.width), height: (navigationController.navigationBar.frame.size.height) + 20)
+        }
         return gradient
     }
 }
