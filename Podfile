@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '13.0'
 
 use_frameworks!
 
@@ -11,10 +11,8 @@ target "orderMe" do
 	pod 'FacebookCore'
 	pod 'FacebookLogin'
 	pod 'FacebookShare'
-	pod 'Fabric'
-	pod 'Crashlytics'
 	pod 'SwiftLint'
-	pod 'FBSDKCoreKit'  
+	pod 'FBSDKCoreKit'
 	pod 'FBSDKLoginKit'
 	pod 'FBSDKShareKit'
 	pod 'FBSDKPlacesKit'
@@ -23,7 +21,9 @@ target "orderMe" do
       installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
           # Force CocoaPods targets to always build for x86_64
-          config.build_settings['ARCHS[sdk=iphonesimulator*]'] = 'x86_64'
+#          config.build_settings['ARCHS[sdk=iphonesimulator*]'] = '-x86_64'
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+          config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
         end
       end
   end
