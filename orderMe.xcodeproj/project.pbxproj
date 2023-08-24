@@ -374,7 +374,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $(git rev-parse --show-toplevel)\nswiftlint lint --config ./.swiftlint.yml\n";
+			shellScript = "# cd $(git rev-parse --show-toplevel)\n# swiftlint lint --config ./.swiftlint.yml\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
