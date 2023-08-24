@@ -6,6 +6,7 @@
 //  Copyright © 2016 Bay-QA. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import FacebookCore
 import FacebookLogin

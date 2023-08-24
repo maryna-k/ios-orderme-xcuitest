@@ -11,6 +11,7 @@ import Foundation
 import Alamofire
 import ObjectMapper
 import AlamofireImage
+import UIKit
 
 
 enum HostURL {
