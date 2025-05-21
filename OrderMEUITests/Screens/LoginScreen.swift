@@ -15,7 +15,7 @@ class LoginScreen: BaseScreen {
 extension LoginScreen {
     @discardableResult
     func tapLoginLaterButton() -> RestaurantListScreen {
-        loginLaterButton.element.tap()
+        loginLaterButton.tap()
         return RestaurantListScreen()
     }
 }

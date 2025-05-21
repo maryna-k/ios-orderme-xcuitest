@@ -15,7 +15,7 @@ class RestaurantListScreen: BaseScreen, TabBar {
 extension RestaurantListScreen {
     @discardableResult
     func tapRepubliqueRestaurant() -> RestaurantScreen {
-        republiqueRest.element.tap()
+        republiqueRest.tap()
         return RestaurantScreen()
     }
 }

@@ -21,7 +21,7 @@ extension BackProtocol {
     
     @discardableResult
     func backTo<T>(screen: T) -> T {
-        backButton.element.tap()
+        backButton.tap()
         return screen
     }
 }

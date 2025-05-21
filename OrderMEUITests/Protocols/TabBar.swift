@@ -35,19 +35,19 @@ extension TabBar {
     
     @discardableResult
     func tapMyOrders() -> Self {
-        myOrdersButton.element.tap()
+        myOrdersButton.tap()
         return self
     }
     
     @discardableResult
     func tapHome() -> Self {
-        homeButton.element.tap()
+        homeButton.tap()
         return self
     }
     
     @discardableResult
     func tapMyReservations() -> Self {
-        myReservationsButton.element.tap()
+        myReservationsButton.tap()
         return self
     }
 }

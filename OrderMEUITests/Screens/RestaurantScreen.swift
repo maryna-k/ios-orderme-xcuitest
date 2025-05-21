@@ -33,11 +33,11 @@ extension RestaurantScreen {
     func choose(option: Options) -> Self {
         switch option {
         case .detectTable:
-            detectTableOption.element.tap()
+            detectTableOption.tap()
         case .callWaiter:
-            callAWaiterOption.element.tap()
+            callAWaiterOption.tap()
         case .callRestaurant:
-            callRestaurantOption.element.tap()
+            callRestaurantOption.tap()
         }
         return self
     }
@@ -50,19 +50,19 @@ extension RestaurantScreen {
     
     @discardableResult
     func tapTableNumberField() -> Self {
-        tableNumberField.element.tap()
+        tableNumberField.tap()
         return self
     }
     
     @discardableResult
     func tapSelectTableButton() -> Self {
-        selectTableButton.element.tap()
+        selectTableButton.tap()
         return self
     }
     
     @discardableResult
     func tapBringMenuButton() -> Self {
-        bringAMenuButton.element.tap()
+        bringAMenuButton.tap()
         return self
     }
 }
