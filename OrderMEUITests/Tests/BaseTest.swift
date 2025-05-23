@@ -7,12 +7,16 @@
 //
 
 import XCTest
+import SBTUITestTunnelClient
 
 class BaseTest: XCTestCase {
     
+    static var shared: BaseTest!
+    
     override func setUpWithError() throws {
+        BaseTest.shared = self
         continueAfterFailure = false
-        let app = XCUIApplication()
-        app.launch()
+        app.launchArguments = ["startStubServer"]
+        app.launchTunnel()
     }
 }

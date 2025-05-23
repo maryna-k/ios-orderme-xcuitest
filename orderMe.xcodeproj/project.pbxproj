@@ -50,6 +50,8 @@
 		4390A4592031D58A00E1CD80 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390A4582031D58A00E1CD80 /* Constants.swift */; };
 		43A8036F203EDF5F005C6EB6 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A8036E203EDF5F005C6EB6 /* AccessibilityIdentifiers.swift */; };
 		43B95CEC2059716B00E8C016 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43B95CEB2059716B00E8C016 /* LaunchScreen.storyboard */; };
+		5C5C9C1D2DE0CC570072E901 /* SBTUITestTunnelClient in Frameworks */ = {isa = PBXBuildFile; productRef = 5C5C9C1C2DE0CC570072E901 /* SBTUITestTunnelClient */; };
+		5C5C9C1F2DE0CC570072E901 /* SBTUITestTunnelServer in Frameworks */ = {isa = PBXBuildFile; productRef = 5C5C9C1E2DE0CC570072E901 /* SBTUITestTunnelServer */; };
 		A7140EFD2A96C57A007FF2D6 /* ObjectMapper in Frameworks */ = {isa = PBXBuildFile; productRef = A7140EFC2A96C57A007FF2D6 /* ObjectMapper */; };
 		A7140F172A96CB16007FF2D6 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = A7140F162A96CB16007FF2D6 /* AlamofireImage */; };
 		A7140F1A2A96CB4F007FF2D6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A7140F192A96CB4F007FF2D6 /* Alamofire */; };
@@ -130,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7140F1A2A96CB4F007FF2D6 /* Alamofire in Frameworks */,
+				5C5C9C1F2DE0CC570072E901 /* SBTUITestTunnelServer in Frameworks */,
 				A7140EFD2A96C57A007FF2D6 /* ObjectMapper in Frameworks */,
 				A7140F212A96D0D1007FF2D6 /* FacebookLogin in Frameworks */,
 				A7140F172A96CB16007FF2D6 /* AlamofireImage in Frameworks */,
@@ -143,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C5C9C1D2DE0CC570072E901 /* SBTUITestTunnelClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +320,7 @@
 				A7140F1E2A96D0D1007FF2D6 /* FacebookGamingServices */,
 				A7140F202A96D0D1007FF2D6 /* FacebookLogin */,
 				A7140F222A96D0D1007FF2D6 /* FacebookShare */,
+				5C5C9C1E2DE0CC570072E901 /* SBTUITestTunnelServer */,
 			);
 			productName = orderMe;
 			productReference = 2B2EA7691CBB0377001507DD /* OrderME.app */;
@@ -339,6 +344,7 @@
 			);
 			name = OrderMEUITests;
 			packageProductDependencies = (
+				5C5C9C1C2DE0CC570072E901 /* SBTUITestTunnelClient */,
 			);
 			productName = OrderMEUITests;
 			productReference = 5C5C9B202DD3BA320072E901 /* OrderMEUITests.xctest */;
@@ -383,6 +389,7 @@
 				A7140F152A96CB16007FF2D6 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				A7140F182A96CB4F007FF2D6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				A7140F1B2A96D0D1007FF2D6 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				5C5C9C1B2DE0CC570072E901 /* XCRemoteSwiftPackageReference "SBTUITestTunnel" */,
 			);
 			productRefGroup = 2B2EA76A1CBB0377001507DD /* Products */;
 			projectDirPath = "";
@@ -740,6 +747,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5C5C9C1B2DE0CC570072E901 /* XCRemoteSwiftPackageReference "SBTUITestTunnel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Subito-it/SBTUITestTunnel";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		A7140EFB2A96C57A007FF2D6 /* XCRemoteSwiftPackageReference "ObjectMapper" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tristanhimmelman/ObjectMapper.git";
@@ -775,6 +790,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5C5C9C1C2DE0CC570072E901 /* SBTUITestTunnelClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C5C9C1B2DE0CC570072E901 /* XCRemoteSwiftPackageReference "SBTUITestTunnel" */;
+			productName = SBTUITestTunnelClient;
+		};
+		5C5C9C1E2DE0CC570072E901 /* SBTUITestTunnelServer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C5C9C1B2DE0CC570072E901 /* XCRemoteSwiftPackageReference "SBTUITestTunnel" */;
+			productName = SBTUITestTunnelServer;
+		};
 		A7140EFC2A96C57A007FF2D6 /* ObjectMapper */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A7140EFB2A96C57A007FF2D6 /* XCRemoteSwiftPackageReference "ObjectMapper" */;
