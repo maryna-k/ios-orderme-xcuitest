@@ -10,12 +10,14 @@ import XCTest
 
 enum Options {
     case detectTable
+    case makeReservation
     case callWaiter
     case callRestaurant
 }
 
 class RestaurantScreen: BaseScreen, BackProtocol {
     private lazy var detectTableOption: Cell = element.collectionViews.firstMatch.cells.element(boundBy: 0).build()
+    private lazy var reservationOption: Cell = element.collectionViews.firstMatch.cells.element(boundBy: 2).build()
     private lazy var callAWaiterOption: StaticText = element.collectionViews.firstMatch.cells.element(boundBy: 3).build()
     private lazy var callRestaurantOption: StaticText = element.collectionViews.firstMatch.cells.element(boundBy: 4).build()
     private lazy var tableNumberField: TextField = element.textFields["tableNumberTextField"].build()
@@ -33,11 +35,13 @@ extension RestaurantScreen {
     func choose(option: Options) -> Self {
         switch option {
         case .detectTable:
-            detectTableOption.element.tap()
+            detectTableOption.tap()
+        case .makeReservation:
+            reservationOption.tap()
         case .callWaiter:
-            callAWaiterOption.element.tap()
+            callAWaiterOption.tap()
         case .callRestaurant:
-            callRestaurantOption.element.tap()
+            callRestaurantOption.tap()
         }
         return self
     }
@@ -50,19 +54,19 @@ extension RestaurantScreen {
     
     @discardableResult
     func tapTableNumberField() -> Self {
-        tableNumberField.element.tap()
+        tableNumberField.tap()
         return self
     }
     
     @discardableResult
     func tapSelectTableButton() -> Self {
-        selectTableButton.element.tap()
+        selectTableButton.tap()
         return self
     }
     
     @discardableResult
     func tapBringMenuButton() -> Self {
-        bringAMenuButton.element.tap()
+        bringAMenuButton.tap()
         return self
     }
 }
