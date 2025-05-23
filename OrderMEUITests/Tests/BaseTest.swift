@@ -16,7 +16,7 @@ class BaseTest: XCTestCase {
     override func setUpWithError() throws {
         BaseTest.shared = self
         continueAfterFailure = false
-        app.launchArguments = ["startStubServer"]
+        app.launchArguments = ["startStubServer", "mockFacebook"]
         app.launchTunnel()
     }
 }
