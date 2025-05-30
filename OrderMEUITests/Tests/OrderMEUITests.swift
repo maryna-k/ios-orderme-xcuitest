@@ -29,7 +29,7 @@ class OrderMEUITests: BaseTest {
         
     func testCallRestaurant() {
         LoginScreen()
-            .tapLoginLaterButton()
+            .loginWithStubbedFacebook(authStub: .success, placesStub: .multiplePlaces)
 
         RestaurantListScreen()
             .tapRepubliqueRestaurant()
