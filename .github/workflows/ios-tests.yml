@@ -1,0 +1,53 @@
+name: iOS UI Tests CI
+
+on:
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:  # allows you to run it manually from the Actions tab too
+
+jobs:
+  ui-tests:
+    runs-on: macos-15  
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies (xcpretty, Allure and xcresults plugin)
+        run: |
+          sudo gem install xcpretty
+          brew install allure
+          DOWNLOAD_URL="https://github.com/eroshenkoam/xcresults/releases/latest/download/xcresults"
+          curl -sL "${DOWNLOAD_URL}" -o ./xcresults
+          chmod +x ./xcresults
+
+      - name: Run XCUITests with xcodebuild
+        run: |
+          xcodebuild \
+            -project orderMe.xcodeproj \
+            -scheme orderMe \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Plus,OS=18.4' \
+            -testPlan Smoke \
+            -retry-tests-on-failure \
+            -test-iterations 3 \
+            -resultBundlePath TestResults \
+            test | xcpretty
+
+      - name: Upload xcresult Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcresult
+          path: TestResults.xcresult
+
+      - name: Generate Allure Report
+        run: |
+          ./xcresults export TestResults.xcresult -o allure-results
+          allure generate allure-results
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/
