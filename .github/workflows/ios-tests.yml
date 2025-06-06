@@ -41,32 +41,41 @@ jobs:
           name: xcresult
           path: TestResults.xcresult
 
-      - name: Generate Allure Report
+      - name: Generate Allure Results
         run: |
           ./xcresults export TestResults.xcresult -o allure-results
-          allure generate allure-results
 
-      - name: Upload Allure Report
+      - name: Checkout old report from GitHub Pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: old-report
+
+      - name: Debug directories
+        run: |
+          pwd
+          find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"
+
+      - name: Copy previous history into new report
+        run: |
+          mkdir -p allure-results/history
+          if [ -d "old-report/history" ]; then
+            cp -r old-report/history/* allure-results/history/
+          else
+            echo "old-report/history does not exist. Skipping history copy."
+          fi
+
+      - name: Generate Allure Report
+        run: |
+          allure generate allure-results -o allure-report
+
+      - name: Upload Allure Results
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report
-          path: allure-report/
+          name: allure-results 
+          path: allure-results/
 
-  deploy-report:
-    needs: ui-tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Download Allure Report artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: allure-report
-          path: allure-report
-
-      - name: Deploy to GitHub Pages
+      - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
