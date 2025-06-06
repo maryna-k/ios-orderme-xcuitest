@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "D1A8514B-786E-4AD2-9583-82EF98CFC0A8",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:orderMe.xcodeproj",
+        "identifier" : "5C5C9B1F2DD3BA320072E901",
+        "name" : "OrderMEUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

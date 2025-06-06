@@ -1,0 +1,84 @@
+name: iOS UI Tests CI
+
+on:
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:  # allows you to run it manually from the Actions tab too
+
+jobs:
+  ui-tests:
+    runs-on: macos-15  
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies (xcpretty, Allure and xcresults plugin)
+        run: |
+          sudo gem install xcpretty
+          brew install allure
+          DOWNLOAD_URL="https://github.com/eroshenkoam/xcresults/releases/latest/download/xcresults"
+          curl -sL "${DOWNLOAD_URL}" -o ./xcresults
+          chmod +x ./xcresults
+
+      - name: Run XCUITests with xcodebuild
+        run: |
+          xcodebuild \
+            -project orderMe.xcodeproj \
+            -scheme orderMe \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Plus,OS=18.4' \
+            -testPlan Smoke \
+            -retry-tests-on-failure \
+            -test-iterations 3 \
+            -resultBundlePath TestResults \
+            test | xcpretty
+
+      - name: Upload xcresult Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcresult
+          path: TestResults.xcresult
+
+      - name: Generate Allure Results
+        run: |
+          ./xcresults export TestResults.xcresult -o allure-results
+
+      - name: Checkout old report from GitHub Pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: old-report
+
+      - name: Debug directories
+        run: |
+          pwd
+          find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"
+
+      - name: Copy previous history into new report
+        run: |
+          mkdir -p allure-results/history
+          if [ -d "old-report/history" ]; then
+            cp -r old-report/history/* allure-results/history/
+          else
+            echo "old-report/history does not exist. Skipping history copy."
+          fi
+
+      - name: Generate Allure Report
+        run: |
+          allure generate allure-results -o allure-report
+
+      - name: Upload Allure Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results 
+          path: allure-results/
+
+      - name: Deploy Allure Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+          publish_branch: gh-pages
+
